@@ -1,13 +1,9 @@
-# **TALK TO ME**
-<img align="center"  alt="Logo" width= "200" src="https://user-images.githubusercontent.com/98665908/187051057-d9d4d3e4-ebd2-46b7-800e-39328df631e7.png">
-<img align="center"  alt="Nombre" width= "350" src="https://user-images.githubusercontent.com/98665908/187051078-66e7f6e1-0ee1-4cdb-bd72-3fb32f1a7d0b.png">
-
+# **FEEDI**
+<img align="center"  alt="Logo" width= "200" src="https://user-images.githubusercontent.com/98665908/197345353-c5d9ff98-2cd5-4e05-b69a-d4f6855cf8a5.png">
+<img align="center"  alt="Nombre" width= "350" src="https://user-images.githubusercontent.com/98665908/197345479-cb0522b5-10e3-4caf-aec4-c6451ab86334.png">
 
 # Integrantes
-## Lideres
-### [Angie Castro](https://github.com/angCF)
-### [Mauren Rivera](https://github.com/murvn77)
-## Equipo de Desarollo
+## Lider
 ### [Anderson Alvarado](https://github.com/andersonjalvarado)
-### [Sebastian Martinez](https://github.com/Sebasgmv) 
-
+## Equipo de Apoyo
+[Angie Castro](https://github.com/angCF)

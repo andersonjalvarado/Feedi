@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Feedi</string>
+    <string name="snackBar_dismiss_label">cerrar</string>
+    <string name="home_label">Hola %1$s, con id %2$s</string>
+    <string name="forgot_password_label">Recuperar Contraseña</string>
+    <string name="signup_label">Registrarse</string>
+    <string name="login_label">Ingresar</string>
+    <string name="password_label">Contraseña</string>
+    <string name="email_label">Email</string>
+    <string name="mail_error_label">El email no puede estar vacio.</string>
+    <string name="error_pass_label">El password no puede estar vacio.</string>
+    <string name="create_user_button_label">Crear Usuario</string>
+    <string name="name_label">Nombre</string>
+    <string name="create_a_new_profile">Crear Nuevo Perfil</string>
+    <string name="phone_label">Celular</string>
+    <string name="logout_menu_item">Salir</string>
+    <string name="message_chat_hint">Mensaje</string>
+    <string name="Rol">Rol</string>
+    <string name="Client">Cliente</string>
+    <string name="Restaurant">Restaurante</string>
+</resources>

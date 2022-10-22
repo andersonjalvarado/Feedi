@@ -18,4 +18,5 @@
     <string name="Rol">Rol</string>
     <string name="Client">Cliente</string>
     <string name="Restaurant">Restaurante</string>
+    <string name="Ini">Ya puedes iniciar sesión en</string>
 </resources>

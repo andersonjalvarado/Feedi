@@ -25,6 +25,7 @@
                 style="@style/TextAppearance.MaterialComponents.Headline4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/purple_300"
                 android:text="@string/create_a_new_profile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +132,7 @@
 
             <TextView
                 android:id="@+id/Rol"
-                android:layout_width="334dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/Rol"
                 android:textColor="@color/purple_300"
@@ -141,35 +142,21 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/Radio"
-                app:layout_constraintBottom_toBottomOf="@+id/Rol"
-                app:layout_constraintEnd_toStartOf="@+id/createButton"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/Rol">
 
                 <RadioButton
-                    android:id="@+id/radio_Paciente"
-                    style="@style/Widget.Material3.CompoundButton.RadioButton"
-                    android:layout_width="297dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginBottom="12dp"
                     android:hint="@string/Client"
-                    android:textAlignment="textStart"
-                    android:textSize="25sp" />
-
+                    android:textAlignment="textStart"/>
                 <RadioButton
-                    android:id="@+id/radio_Profesional"
-                    style="@style/Widget.Material3.CompoundButton.RadioButton"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="12dp"
-                    android:layout_marginRight="12dp"
-                    android:layout_marginBottom="12dp"
                     android:hint="@string/Restaurant"
-                    android:textSize="25sp" />
+                    android:textAlignment="textStart"/>
             </RadioGroup>
 
             <Button

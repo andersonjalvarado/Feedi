@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -26,7 +27,7 @@ public class RegistroActivity extends AppCompatActivity {
     public static final String TAG = RegistroActivity.class.getName();
     ActivityRegistroBinding binding;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,10 +37,10 @@ public class RegistroActivity extends AppCompatActivity {
         this.setTitle("Crear Nuevo Perfil");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        binding.createButton.setOnClickListener(view -> doSignUp());
+        binding.createButton.setOnClickListener(view -> registro());
     }
 
-    private void doSignUp() {
+    private void registro() {
         String email = binding.createEmail.getEditText().getText().toString();
         String pwd = binding.createPass.getEditText().getText().toString();
         String nombre = binding.createDisplayName.getEditText().getText().toString();
@@ -55,8 +56,16 @@ public class RegistroActivity extends AppCompatActivity {
                 rol = "Cliente";
             if (binding.radioRestaurant.isChecked())
                 rol = "Restaurante";
-
-            postUser(email, pwd, nombre, cel, rol);
+            if(!email.matches("[a-zA-Z]+@[a-zA-Z]+(\\.[a-zA-Z]+)+")){
+                Toast.makeText(getBaseContext(), "Digita un correo valido", Toast.LENGTH_LONG).show();
+                return;
+            }
+            if(pwd.length() < 6){
+                Toast.makeText(getBaseContext(), "Contraseña debe ser mayor a 6", Toast.LENGTH_LONG).show();
+                return;
+            }
+            else
+                postUser(email, pwd, nombre, cel, rol);
         }
     }
 
@@ -77,6 +86,7 @@ public class RegistroActivity extends AppCompatActivity {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(getBaseContext(), String.format("%s registrado con éxito, inicia sesión", nombre),Toast.LENGTH_LONG).show();
+                doSignUp(email, pwd);
                 finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -86,7 +96,15 @@ public class RegistroActivity extends AppCompatActivity {
             }
         });
     }
-
+    private void doSignUp(String email, String pwd){
+        mAuth.createUserWithEmailAndPassword(email, pwd)
+                .addOnSuccessListener(authResult -> {
+                    Log.i(TAG, "doSignUp: " + authResult.getUser().getEmail() + " created.");
+                }).addOnFailureListener(e -> {
+                    Log.e(TAG, "doSignUp: " + e.toString());
+                    Toast.makeText(getBaseContext(), "Error en el registro", Toast.LENGTH_LONG).show();
+                });
+    }
     @Override
     public boolean onSupportNavigateUp(){
         onBackPressed();

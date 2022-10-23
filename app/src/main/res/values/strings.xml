@@ -19,4 +19,5 @@
     <string name="Client">Cliente</string>
     <string name="Restaurant">Restaurante</string>
     <string name="Ini">Ya puedes iniciar sesión en</string>
+    <string name="HelpPass">Mínimo 6 carácteres</string>
 </resources>

@@ -76,6 +76,7 @@
                 android:hint="@string/password_label"
                 android:inputType="textPassword"
                 android:minHeight="48dp"
+                app:helperText="@string/HelpPass"
                 app:endIconMode="password_toggle"
                 app:layout_constraintTop_toBottomOf="@+id/createEmail"
                 app:startIconDrawable="@drawable/ic_baseline_password_24">

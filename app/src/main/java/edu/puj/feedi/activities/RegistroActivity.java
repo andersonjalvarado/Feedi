@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -23,15 +25,13 @@ import edu.puj.feedi.R;
 public class RegistroActivity extends AppCompatActivity {
     public static final String TAG = RegistroActivity.class.getName();
     ActivityRegistroBinding binding;
-    private FirebaseFirestore firestore;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityRegistroBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        firestore = FirebaseFirestore.getInstance();
 
         this.setTitle("Crear Nuevo Perfil");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -46,34 +46,34 @@ public class RegistroActivity extends AppCompatActivity {
         String cel = binding.createPhone.getEditText().getText().toString();
         String rol = " ";
 
-        if(email != null && !email.isEmpty() && pwd != null && !pwd.isEmpty() && nombre != null && !nombre.isEmpty() && cel != null && !cel.isEmpty() &&
-                (binding.radioClient.isChecked() || binding.radioRestaurant.isChecked()) ){
-
+        if(email == null || email.isEmpty() || pwd == null || pwd.isEmpty() || nombre == null || nombre.isEmpty() || cel == null ||cel.isEmpty() ||
+                !(binding.radioClient.isChecked() || binding.radioRestaurant.isChecked()) ){
+            Toast.makeText(getBaseContext(), "Llena todos los datos", Toast.LENGTH_LONG).show();
+        }
+        else{
             if (binding.radioClient.isChecked())
                 rol = "Cliente";
-
-            else if (binding.radioRestaurant.isChecked())
+            if (binding.radioRestaurant.isChecked())
                 rol = "Restaurante";
 
             postUser(email, pwd, nombre, cel, rol);
         }
-        else{
-            Toast.makeText(getBaseContext(), "Los campos no pueden estar vacios", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-
     }
 
     private void postUser(String email, String pwd, String nombre, String cel, String rol){
-        Map<String, Object> map = new HashMap<>();
-        map.put("email", email);
-        map.put("password", pwd);
-        map.put("nombre", nombre);
-        map.put("celular", cel);
-        map.put("rol", rol);
+        Map<String, Object> user = new HashMap<>();
+        user.put("email", email);
+        Log.d(TAG, "email: " + email);
+        user.put("password ", pwd);
+        Log.d(TAG, "password " + pwd);
+        user.put("nombre", nombre);
+        Log.d(TAG, "nombre " + nombre);
+        user.put("celular", cel);
+        Log.d(TAG, "celular " + cel);
+        user.put("rol", rol);
+        Log.d(TAG, "rol" + rol);
 
-        firestore.collection("Usuario").add(map).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        db.collection("Usuarios").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
             @Override
             public void onSuccess(DocumentReference documentReference) {
                 Toast.makeText(getBaseContext(), String.format("%s registrado con éxito, inicia sesión", nombre),Toast.LENGTH_LONG).show();
@@ -82,7 +82,7 @@ public class RegistroActivity extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getBaseContext(), "Error en los registros", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Error en el registro", Toast.LENGTH_LONG).show();
             }
         });
     }

@@ -46,25 +46,22 @@ public class RegistroActivity extends AppCompatActivity {
         String cel = binding.createPhone.getEditText().getText().toString();
         String rol = " ";
 
-        if (binding.radioClient.isChecked())
-        {
-            rol = "Cliente";
-        }
-        if (binding.radioRestaurant.isChecked())
-        {
-            rol = "Restaurante";
+        if(email != null && !email.isEmpty() && pwd != null && !pwd.isEmpty() && nombre != null && !nombre.isEmpty() && cel != null && !cel.isEmpty() &&
+                (binding.radioClient.isChecked() || binding.radioRestaurant.isChecked()) ){
+
+            if (binding.radioClient.isChecked())
+                rol = "Cliente";
+
+            else if (binding.radioRestaurant.isChecked())
+                rol = "Restaurante";
+
+            postUser(email, pwd, nombre, cel, rol);
         }
         else{
-            Toast.makeText(getBaseContext(), "Seleccione un rol", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        if(email == null || email.isEmpty() || pwd == null || pwd.isEmpty() || nombre == null || nombre.isEmpty()|| cel == null || cel.isEmpty()){
             Toast.makeText(getBaseContext(), "Los campos no pueden estar vacios", Toast.LENGTH_LONG).show();
             return;
         }
-        else
-            postUser(email, pwd, nombre, cel, rol);
+
 
     }
 

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "50674060444",
+    "project_id": "feedi-c7b5a",
+    "storage_bucket": "feedi-c7b5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:50674060444:android:7c16ea79e81192b03ab159",
+        "android_client_info": {
+          "package_name": "edu.puj.feedi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "50674060444-62l32moo90cb00higvekel7tkudrlr4b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGZJDxl0BxeDeuZMoc6JnsGpbz4fx46Ho"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "50674060444-62l32moo90cb00higvekel7tkudrlr4b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

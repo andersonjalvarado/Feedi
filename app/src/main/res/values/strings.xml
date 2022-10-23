@@ -11,7 +11,7 @@
     <string name="error_pass_label">El password no puede estar vacio.</string>
     <string name="create_user_button_label">Crear Usuario</string>
     <string name="name_label">Nombre</string>
-    <string name="create_a_new_profile">Crear Nuevo Perfil</string>
+    <string name="create_a_new_profile">Registro</string>
     <string name="phone_label">Celular</string>
     <string name="logout_menu_item">Salir</string>
     <string name="message_chat_hint">Mensaje</string>

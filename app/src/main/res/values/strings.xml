@@ -20,4 +20,39 @@
     <string name="Restaurant">Restaurante</string>
     <string name="Ini">Ya puedes iniciar sesión en</string>
     <string name="HelpPass">Mínimo 6 carácteres</string>
+    <string name="search">Busca un Restaurante</string>
+    <string name="ofertas">Ofertas</string>
+    <string name="infoPerfil">Aquí puedes ver los datos de tu perfil</string>
+    <string name="perfil">Perfil</string>
+    <string name="nombre">Nombre</string>
+    <string name="correo">Correo</string>
+    <string name="celular">Celular</string>
+    <string name="editPerfil">Editar datos</string>
+    <string name="carrito">Carrito</string>
+    <string name="infoCarrito">Aquí puedes ver tus comidas seleccionadas</string>
+    <string name="pedido">Realizar Pedido</string>
+    <string name="medioPago">Medio de Pago</string>
+    <string name="detalle">Detalle</string>
+    <string name="total">Total</string>
+    <string name="pse">PSE</string>
+    <string name="efectivo">Efectivo</string>
+    <string name="btnCerrar">Cerrar Sesión</string>
+
+    <!-- Restaurantes -->
+    <string-array name="nombres_restaurantes">
+        <item>Mirador</item>
+        <item>Kiosco Urapanes</item>
+        <item>El Sauce</item>
+        <item>La Crepería</item>
+        <item>Café Urgencias</item>
+    </string-array>
+    <!-- Ofertas -->
+    <string-array name="nombres_ofertas">
+        <item>Burrito</item>
+        <item>Croissant</item>
+        <item>Pescadito</item>
+        <item>Sandwich</item>
+        <item>Rollo de Canela</item>
+    </string-array>
+
 </resources>

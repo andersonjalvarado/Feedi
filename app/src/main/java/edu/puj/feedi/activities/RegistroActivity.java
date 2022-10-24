@@ -7,6 +7,7 @@ import edu.puj.feedi.databinding.ActivityRegistroBinding;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -47,11 +48,7 @@ public class RegistroActivity extends AppCompatActivity {
         String cel = binding.createPhone.getEditText().getText().toString();
         String rol = " ";
 
-        if(email == null || email.isEmpty() || pwd == null || pwd.isEmpty() || nombre == null || nombre.isEmpty() || cel == null ||cel.isEmpty() ||
-                !(binding.radioClient.isChecked() || binding.radioRestaurant.isChecked()) ){
-            Toast.makeText(getBaseContext(), "Llena todos los datos", Toast.LENGTH_LONG).show();
-        }
-        else{
+        if(validarDatos()){
             if (binding.radioClient.isChecked())
                 rol = "Cliente";
             if (binding.radioRestaurant.isChecked())
@@ -66,7 +63,7 @@ public class RegistroActivity extends AppCompatActivity {
             }
             else
                 postUser(email, pwd, nombre, cel, rol);
-        }
+        } else return;
     }
 
     private void postUser(String email, String pwd, String nombre, String cel, String rol){
@@ -104,6 +101,35 @@ public class RegistroActivity extends AppCompatActivity {
                     Log.e(TAG, "doSignUp: " + e.toString());
                     Toast.makeText(getBaseContext(), "Error en el registro", Toast.LENGTH_LONG).show();
                 });
+    }
+    private boolean validarDatos(){
+        boolean valido = true;
+
+        if (TextUtils.isEmpty(binding.createEmail.getEditText().getText().toString())){
+            binding.createEmail.setError("Email vacío");
+            valido = false;
+        }else binding.createEmail.setError(null);
+
+        if (TextUtils.isEmpty(binding.createPass.getEditText().getText().toString())){
+            binding.createPass.setError("Contraseña vacía");
+            valido = false;
+        }else binding.createPass.setError(null);
+
+        if (TextUtils.isEmpty(binding.createDisplayName.getEditText().getText().toString())){
+            binding.createDisplayName.setError("Nombre vacío");
+            valido = false;
+        }else binding.createDisplayName.setError(null);
+
+        if (TextUtils.isEmpty(binding.createPhone.getEditText().getText().toString())){
+            binding.createPhone.setError("Celular vacío");
+            valido = false;
+        }else binding.createPhone.setError(null);
+
+        if(!(binding.radioClient.isChecked() || binding.radioRestaurant.isChecked())){
+            Toast.makeText(getBaseContext(), "Selecciona un rol", Toast.LENGTH_LONG).show();
+            valido = false;
+        }
+        return valido;
     }
     @Override
     public boolean onSupportNavigateUp(){

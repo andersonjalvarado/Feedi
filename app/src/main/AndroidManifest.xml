@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,6 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Feedi"
         tools:targetApi="31">
+        <activity
+            android:name=".activities.RestauranteActivity"
+            android:parentActivityName=".activities.ClienteHomeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.ClienteHomeActivity" />
+        </activity>
+        <activity
+            android:name=".activities.ClienteHomeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".activities.RegistroActivity"
             android:exported="false">

@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, pwd)
                     .addOnSuccessListener(authResult -> {
                         Log.i(TAG, "doLogin: login success");
-                        startActivity(new Intent(this, MainActivity.class));
+                        startActivity(new Intent(this, ClienteHomeActivity.class));
                     }).addOnFailureListener(e -> {
                         Log.e(TAG, "doLogin: " + e.toString());
                         Toast.makeText(getBaseContext(), "Usuario No Registrado", Toast.LENGTH_LONG).show();
@@ -51,13 +51,12 @@ public class LoginActivity extends AppCompatActivity {
         String email = binding.loginEmail.getEditText().getText().toString();
 
         if(email == null || email.isEmpty()){
-            Toast.makeText(getBaseContext(), "Digita todos los datos", Toast.LENGTH_LONG).show();
+            Toast.makeText(getBaseContext(), "Digita el email", Toast.LENGTH_LONG).show();
             return;
         }
 
         mAuth.sendPasswordResetEmail(email).addOnSuccessListener(unused ->
-                Toast.makeText(getBaseContext(), "Digita todos los datos", Toast.LENGTH_LONG).show());
-                Toast.makeText(getBaseContext(), String.format("Revise el correo %s con mas instrucciones.", email),Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), String.format("Revise el correo %s con más instrucciones.", email),Toast.LENGTH_LONG).show());
     }
 
     private boolean validarDatos(){

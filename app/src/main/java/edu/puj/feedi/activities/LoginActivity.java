@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.signInWithEmailAndPassword(email, pwd)
                     .addOnSuccessListener(authResult -> {
                         Log.i(TAG, "doLogin: login success");
-                        startActivity(new Intent(this, ClienteHomeActivity.class));
+                        startActivity(new Intent(this, RestauranteHomeActivity.class));
                     }).addOnFailureListener(e -> {
                         Log.e(TAG, "doLogin: " + e.toString());
                         Toast.makeText(getBaseContext(), "Usuario No Registrado", Toast.LENGTH_LONG).show();

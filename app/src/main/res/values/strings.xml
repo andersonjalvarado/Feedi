@@ -35,8 +35,16 @@
     <string name="detalle">Detalle</string>
     <string name="total">Total</string>
     <string name="pse">PSE</string>
-    <string name="efectivo">Efectivo</string>
+    <string name="nequi">Nequi</string>
+    <string name="daviplata">Daviplata</string>
     <string name="btnCerrar">Cerrar Sesión</string>
+    <string name="publicar">Publicar</string>
+    <string name="infoPublicar">Aquí puedes escribir los detalles del producto y publicarlo</string>
+    <string name="galeria">Seleccionar Imágen</string>
+    <string name="camara">Cámara</string>
+    <string name="infoimg">Sube una imágen del producto</string>
+    <string name="cantidad">Cantidad</string>
+    <string name="precio">Precio</string>
 
     <!-- Restaurantes -->
     <string-array name="nombres_restaurantes">

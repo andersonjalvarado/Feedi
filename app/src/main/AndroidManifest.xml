@@ -15,9 +15,16 @@
         android:theme="@style/Theme.Feedi"
         tools:targetApi="31">
         <activity
-            android:name=".activities.RestauranteActivity"
-            android:parentActivityName=".activities.ClienteHomeActivity"
+            android:name=".activities.RestauranteHomeActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activities.RestauranteActivity"
+            android:exported="false"
+            android:parentActivityName=".activities.ClienteHomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.ClienteHomeActivity" />

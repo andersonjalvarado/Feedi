@@ -31,7 +31,7 @@ public class PedidosFragment extends Fragment {
     }
 
     private void llenarSpinner() {
-        String [] campos = new String[]{getString(R.string.pse),getString(R.string.efectivo)};
+        String [] campos = new String[]{getString(R.string.pse),getString(R.string.nequi),getString(R.string.daviplata)};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getContext(),

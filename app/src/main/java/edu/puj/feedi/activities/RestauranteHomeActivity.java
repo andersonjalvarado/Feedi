@@ -17,6 +17,7 @@ public class RestauranteHomeActivity extends AppCompatActivity {
     ActivityRestauranteHomeBinding binding;
     PerfilFragment perfilFragment = new PerfilFragment();
     PublicarFragment publicarFragment = new PublicarFragment();
+    String correo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +45,24 @@ public class RestauranteHomeActivity extends AppCompatActivity {
     };
 
     private void loadFagment(Fragment fragment) {
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        Bundle extras = getIntent().getExtras();
+        fragment.setArguments(extras);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentView,fragment)
+                .commit();
+
+       /* FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragmentView,fragment);
         transaction.commit();
+*/
+    }
+    private void recuperarDatosRestaurante() {
+
+        Bundle extras = getIntent().getExtras();
+
+        if(extras != null ){
+            correo = extras.getString("correo");
+        }
     }
 }

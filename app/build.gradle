@@ -60,7 +60,7 @@ dependencies {
     implementation 'io.github.florent37:shapeofview:1.4.7'
     implementation "com.airbnb.android:lottie:5.0.3"
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    //implementation "androidx.fragment:fragment-ktx:1.2.5"
+    implementation 'com.squareup.picasso:picasso:2.8'
 
     def glideVer = "4.13.2"
     implementation "com.github.bumptech.glide:glide:$glideVer"

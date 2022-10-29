@@ -1,22 +1,35 @@
 package edu.puj.feedi.activities;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import edu.puj.feedi.databinding.ActivityLoginBinding;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import edu.puj.feedi.R;
 
 public class LoginActivity extends AppCompatActivity {
     public static final String TAG = RegistroActivity.class.getName();
     ActivityLoginBinding binding;
+    String idUsuario, rol=" ";
+    DocumentReference documentReference;
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,20 +44,57 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void doLogin(){
-
         if(validarDatos()){
             String email = binding.loginEmail.getEditText().getText().toString();
             String pwd = binding.loginPass.getEditText().getText().toString();
             mAuth.signInWithEmailAndPassword(email, pwd)
                     .addOnSuccessListener(authResult -> {
                         Log.i(TAG, "doLogin: login success");
-                        startActivity(new Intent(this, RestauranteHomeActivity.class));
+
+                        Log.i(TAG, "email " + email);
+
+                        documentReference = firestore.collection("Usuarios").document(email);
+                        //acceder al rol
+                       /* documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                                rol = value.getString("rol");
+                            }
+                        });*/
+                        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    DocumentSnapshot document = task.getResult();
+                                    if (document.exists()) {
+                                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                        rol = document.getString("rol");
+                                    } else {
+                                        Log.d(TAG, "No such document");
+                                    }
+                                } else {
+                                    Log.d(TAG, "get failed with ", task.getException());
+                                }
+                            }
+                        });
+                        //comparar rol
+                        if (rol.equals("Cliente")){
+                            Intent intent = new Intent(this, ClienteHomeActivity.class);
+                            intent.putExtra("correo",email);
+                            startActivity(intent);
+
+                        }
+                        if (rol.equals("Restaurante")){
+                            Intent intent = new Intent(this, RestauranteHomeActivity.class);
+                            intent.putExtra("correo",email);
+                            startActivity(intent);
+
+                        }
                     }).addOnFailureListener(e -> {
                         Log.e(TAG, "doLogin: " + e.toString());
                         Toast.makeText(getBaseContext(), "Usuario No Registrado", Toast.LENGTH_LONG).show();
                     });
         } else return;
-
     }
 
     private void forgotPwd(){

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import edu.puj.feedi.databinding.ActivityRegistroBinding;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -26,7 +27,9 @@ public class RegistroActivity extends AppCompatActivity {
     public static final String TAG = RegistroActivity.class.getName();
     ActivityRegistroBinding binding;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+    String role="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,8 +52,10 @@ public class RegistroActivity extends AppCompatActivity {
         if(validarDatos()){
             if (binding.radioClient.isChecked())
                 rol = "Cliente";
+                role = "Cliente";
             if (binding.radioRestaurant.isChecked())
                 rol = "Restaurante";
+                role = "Restaurante";
             if(!email.matches("[a-zA-Z](\\w|\\.)*@[a-zA-Z0-9]+(\\.[a-zA-Z]+)+")){
                 Toast.makeText(getBaseContext(), "Digita un correo valido", Toast.LENGTH_LONG).show();
                 return;
@@ -78,9 +83,9 @@ public class RegistroActivity extends AppCompatActivity {
         user.put("rol", rol);
         Log.d(TAG, "rol" + rol);
 
-        doSignUp(email, pwd);
         usuarios.document(email).set(user);
         Toast.makeText(getBaseContext(), String.format("%s registrado con éxito, inicia sesión", nombre),Toast.LENGTH_LONG).show();
+        doSignUp(email, pwd);
         finish();
 
         /*db.collection("Usuarios").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -102,6 +107,11 @@ public class RegistroActivity extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(email, pwd)
                 .addOnSuccessListener(authResult -> {
                     Log.i(TAG, "doSignUp: " + authResult.getUser().getEmail() + " created.");
+                    if(role.equals("Cliente")){
+                        startActivity(new Intent(RegistroActivity.this,ClienteHomeActivity.class));
+                    }else if(role.equals("Restaurante")){
+                        startActivity(new Intent(RegistroActivity.this,RestauranteHomeActivity.class));
+                    }
 
                 }).addOnFailureListener(e -> {
                     Log.e(TAG, "doSignUp: " + e.toString());

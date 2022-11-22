@@ -1,6 +1,5 @@
 package edu.puj.feedi.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.puj.feedi.databinding.ActivityRegistroBinding;
@@ -11,17 +10,12 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.github.javafaker.Bool;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class RegistroActivity extends AppCompatActivity {
     public static final String TAG = RegistroActivity.class.getName();
@@ -50,12 +44,14 @@ public class RegistroActivity extends AppCompatActivity {
         String rol = " ";
 
         if(validarDatos()){
-            if (binding.radioClient.isChecked())
+            if (binding.radioClient.isChecked()){
                 rol = "Cliente";
                 role = "Cliente";
-            if (binding.radioRestaurant.isChecked())
+            }
+            if (binding.radioRestaurant.isChecked()){
                 rol = "Restaurante";
                 role = "Restaurante";
+            }
             if(!email.matches("[a-zA-Z](\\w|\\.)*@[a-zA-Z0-9]+(\\.[a-zA-Z]+)+")){
                 Toast.makeText(getBaseContext(), "Digita un correo valido", Toast.LENGTH_LONG).show();
                 return;

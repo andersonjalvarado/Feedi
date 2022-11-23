@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 import edu.puj.feedi.databinding.FragmentPerfilBinding;
 import edu.puj.feedi.R;
 
@@ -18,12 +20,15 @@ import edu.puj.feedi.R;
 public class PerfilFragment extends Fragment {
 
     FragmentPerfilBinding binding;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentPerfilBinding.inflate(inflater);
-
+        //binding.textEsp.setText(mAuth.getCurrentUser().getProviderId());
+        binding.textCorreo.setText(mAuth.getCurrentUser().getEmail());
+        //binding.TextCelular.setText(mAuth.getCurrentUser().getMetadata().toString());
         binding.btnCerrarSesion.setOnClickListener((view) -> {
             Context context = view.getContext();
             Intent intent = new Intent(context, LoginActivity.class);

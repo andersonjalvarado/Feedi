@@ -31,7 +31,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
         binding = FragmentInicioBinding.inflate(inflater);
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        setRestuarantes();
+        setRestaurantes();
 
         adapter = new RestauranteAdapter(restuarantes);
         binding.recyclerView.setAdapter(adapter);
@@ -41,7 +41,7 @@ public class InicioFragment extends Fragment implements SearchView.OnQueryTextLi
         return binding.getRoot();
     }
 
-    private void setRestuarantes (){
+    private void setRestaurantes (){
         String[] nombresRestuarantes = getResources().getStringArray(R.array.nombres_restaurantes);
         for (int i = 0; i < nombresRestuarantes.length; i++)
             restuarantes.add(new Restaurante(nombresRestuarantes[i],
